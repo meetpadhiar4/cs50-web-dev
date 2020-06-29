@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-sm">
+    <a class="navbar-brand">Flack, Welcome: {{ name }}</a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item" style="padding:5px;">
+            <button class="btn btn-primary" id="darkmode" role="button">Dark Mode</button>
+        </li>
+        <li class="nav-item" style="padding:5px;">
+            <a class="btn btn-success" href="#" role="button">Log out</a>
+        </li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="row" style="padding:20px;">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="jumbotron" style="margin-top:10%;">
+                <h3>List of channels</h3>
+                <div>
+                    <ul>
+                        {% for channel in channels %}
+                            <li class="select-channel">#{{ channel }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <hr style="border: 0.1px solid #B3B3B3">
+                <h3>Create channel</h3>
+                <form method="post" action="{{ url_for('channel') }}">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Channel name</label>
+                        <input type="text" class="form-control" placeholder="Enter a channel name" id="channel_name" name="channelname">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="channel">Create</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="jumbotron" style="margin-top:5%;">
+                <h3 align="center" id="channeName"></h3>
+                <hr style="border: 0.1px solid #B3B3B3">
+                <div id="chat-box">
+                    <!-- {% if messages %} -->
+                        {% for message in messages%}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    <!-- {% endif %} -->
+                </div>
+                <hr style="border: 0.1px solid #B3B3B3">
+                <form class="form-inline" id="form_message">
+                    <div class="row">
+                        <div class="form-group mx-sm-3" style="margin-left:5%;">
+                            <textarea rows="3" cols="30" style="padding:10px;" placeholder="Enter a message" id="message"></textarea>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-8" style="padding:20px;">
+                            <button type="button" class="btn btn-primary" style="margin-left:1%;" id="send">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div style="padding:15px;">
+        <ul class="nav justify-content-end nav-pills">
+            <li class="nav-item">
+                <button class="btn btn-primary" id="darkmode" role="button">Dark Mode</button>
+            </li>
+        </ul>
+    </div>
+    <div class="jumbotron">
+    <div style="padding:30px;">
+        <h1 align="center" class="upper">Welcome to Flack.</h1>
+        <h2 align="center" style="padding:20px;">Enter your username to send messages.</h2>
+    </div>
+    <hr style="border: 0.1px solid #B3B3B3">
+    <form action="{{url_for('home')}}" method="post">
+        <div class="form-group" style="padding:20px;">
+            <label for="exampleInputEmail1" style="font-size:30px;">Username</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Enter username" style="background-color:#E2E2E2;">
+        </div>
+        <div style="padding:20px; align-content:center; margin-left:39.5%;">
+            <div class="container-fluid" style="padding:20px;">
+                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

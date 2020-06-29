@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Order
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-light justify-content-between">
+    <a class="navbar-brand">Welcome {{ user }}</a>
+    <form class="form-inline">
+        <a href="{% url 'home' %}" class="btn btn-outline-success my-2 my-sm-0" type="button">Menu</a>
+        <a href="{% url 'logout' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left:5px;">Logout</a>
+    </form>
+</nav>
+<h1 align="center">Your shopping cart</h1>
+<hr>
+{% if orderitems %}
+{% if order.status == "Pending" %}
+<h2 align="center">Order status:<p class="text-danger">{{ order.status}}</p>
+</h2>
+<h4 align="center">(Your order is pending, please confirm your order for it to be initiated)</h4>
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderitem in orderitems %}
+        <tr>
+            <th scope="row">{{ orderitem.name }}</th>
+            <td>{{ orderitem.category }}</td>
+            <td>${{ orderitem.price }}</td>
+            <td><a href="{% url 'delete' orderitem.name orderitem.category orderitem.price %}" type="button" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 align="left">Your total: ${{ total }}</h3>
+
+<a href="{% url 'confirm' %}" type="button" class="btn btn-primary btn-lg">Confirm</a>
+{% elif order.status == "Initiated" %}
+<h2 align="center">Order status:<p class="text-primary">{{ order.status}}</p>
+</h2>
+<h4 align="center">(Your order is confirmed, once complete it will be delivered to you)</h4>
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderitem in orderitems %}
+        <tr>
+            <th scope="row">{{ orderitem.name }}</th>
+            <td>{{ orderitem.category }}</td>
+            <td>${{ orderitem.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 align="left">Your total: ${{ total }}</h3>
+{% elif order.status == "Complete" %}
+<h2 align="center">Order status:<p class="text-success">{{ order.status }}</p>
+</h2>
+<h4 align="center">(Your order is done and on its way to you)</h4>
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderitem in orderitems %}
+        <tr>
+            <th scope="row">{{ orderitem.name }}</th>
+            <td>{{ orderitem.category }}</td>
+            <td>${{ orderitem.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3 align="left">Your total: ${{ total }}</h3>
+{% endif %}
+{% else %}
+<h2 align="center">Your cart is empty please continue shoppping to add items</h2>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %}
+{{ isbn }}
+{% endblock %}
+{% block body %}
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('logout') }}" style="font-size:20px;">Log-out</a>
+  </li>
+</ul>
+
+
+<div style="padding:30px">
+    <h1 align="center" style="padding:20px">Book Title : {{ isbn }}.</h1>
+</div>
+
+<hr>
+
+<div style="padding:20px">
+    <h4 align="center">You can review and rate the book.</h4>
+</div>
+
+<form method="post">
+    <div class="form-row align-items-center" align="center" style="padding:20px;">
+        <div class="col-sm my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="rating">
+                <option selected>Rate from 1 to 5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+                <option value="3">5</option>
+            </select>
+        </div>
+        <div class="form-group algin-items-center" style="padding:20px;" align="center">
+            <label for="exampleFormControlTextarea1">Write your review here</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="text"></textarea>
+        </div>
+        <div class="form-group algin-items-center" style="padding:20px;">
+            <button type="submit" class="btn btn-outline-primary" align="center">Submit review</button>
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<div style="padding:30px">
+    <h4 align="center" style="padding:1px;">Reviews from other users.</h4>
+    <ul class="list-group">
+        {% for review in reviews %}
+        <li class="list-group-item">Review from {{review[0]}}, {{review[2]}}</li>
+        {% endfor %}
+        <!-- <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li> -->
+    </ul>
+</div>
+
+
+
+{% endblock %}

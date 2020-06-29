@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Order
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-light justify-content-between">
+    <a class="navbar-brand">Welcome {{ user }}</a>
+    <form class="form-inline">
+        <a href="{% url 'home' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-right:10px;">Menu</a>
+        <a href="{% url 'cart' %}" class="btn btn-outline-success my-2 my-sm-0" type="button">Cart</a>
+        <a href="{% url 'logout' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left:10px;">Logout</a>
+    </form>
+</nav>
+<h1 align="center">Your order items</h1>
+<hr>
+{% if orderitems %}
+<h4 align="center">(If you want to add more items, please go back to menu and continue your order or confirm your order)</h4>
+<hr>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for orderitem in orderitems%}
+    <tr>
+      <th scope="row">{{ orderitem.name }}</th>
+      <td>{{ orderitem.category}}</td>
+      <td>${{ orderitem.price }}</td>
+      <td><a href="{% url 'delete' orderitem.name orderitem.category orderitem.price %}" type="button" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h3 align="left">Your total: ${{ total }}</h3>
+<a href="{% url 'confirm' %}" type="button" class="btn btn-primary btn-lg">Confirm</a>
+{% else %}
+<h2 align="center">Currently no items, please go to menu to add items</h2>
+{% endif %}
+{% endblock %}

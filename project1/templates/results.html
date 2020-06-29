@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}
+Results
+{% endblock %}
+{% block body %}
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href="url_for{{ 'logout' }}">Log-out</a>
+  </li>
+</ul>
+
+<div style="padding:30px">
+    <h1 align="center" style="padding:20px">Results.</h1>
+</div>
+<hr>
+<div style="padding:1px">
+    <h3 align="center" style="padding:10px;">Click on the results to view details.</h3>
+    <ul class="list-group">
+        {% for book in books %}
+            <a href="{{ url_for('book', isbn = book['isbn'])}}" class="list-group-item">Book title : {{ book['title'] }}, Author : {{ book['author'] }}, Year published : {{ book['year'] }}, Isbn number : {{ book['isbn'] }}</a>
+        {% endfor %}
+        <!-- <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li> -->
+    </ul>
+</div>
+
+{% endblock %}

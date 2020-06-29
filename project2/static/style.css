@@ -1,0 +1,47 @@
+:root {
+    --body-bg: #FFFFFF;
+    --nav-bg: #EEEEEE;
+    --jumbotron-bg: #EEEEEE;
+    --text-color: black;
+    --input-color: white;
+    --input-placeholder-color: gray;
+}
+
+.dark-theme {
+    --body-bg: #282828;
+    --nav-bg: #434343;
+    --jumbotron-bg: #434343;
+    --text-color: white;
+    --input-color: #797878;
+    --input-placeholder-color: black;
+}
+
+body {
+    background-color: var(--body-bg);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.navbar {
+    background-color: var(--nav-bg);
+    color: var(--text-color);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.navbar-brand {
+    color: var(--text-color);
+}
+
+.jumbotron {
+    background-color: var(--jumbotron-bg);
+    color: var(--text-color);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+input[type = text] {
+    border: none;
+    background-color: var(--input-color);
+}
+
+input[type = text]::placeholder {
+    color: var(--input-placeholder-color);
+}

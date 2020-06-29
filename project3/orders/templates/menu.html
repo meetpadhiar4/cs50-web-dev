@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+{% if message %}
+<div style="margin-top:1%;">{{ message }}</div>
+{% endif %}
+<nav class="navbar navbar-light justify-content-between">
+    <a class="navbar-brand">Welcome {{ user }}</a>
+    <form class="form-inline">
+        <a href="{% url 'cart' %}" class="btn btn-outline-success my-2 my-sm-0" type="button">Cart</a>
+        <a href="{% url 'logout' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-left:5px;">Logout</a>
+    </form>
+</nav>
+<h1 align="center">Menu</h1>
+<hr>
+<h1 align="center">{{ category }}</h1>
+<hr>
+{% if category == "Regular Pizza" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Small</th>
+      <th scope="col">Large</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.name }}</th>
+      <td><a href="{% url 'add' item.name category item.small %}">${{ item.small }}</a></td>
+      <td><a href="{% url 'add' item.name category item.large %}">${{ item.large }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if category == "Sicilian Pizza" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Small</th>
+      <th scope="col">Large</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.name }}</th>
+      <td><a href="{% url 'add' item.name category item.small %}">${{ item.small }}</a></td>
+      <td><a href="{% url 'add' item.name category item.large %}">${{ item.large }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if category == "Subs" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Small</th>
+      <th scope="col">Large</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.name }}</th>
+      <td><a href="{% url 'add' item.name category item.small %}">${{ item.small }}</a></td>
+      <td><a href="{% url 'add' item.name category item.large %}">${{ item.large }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if category == "Dinner Platter" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Small</th>
+      <th scope="col">Large</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.name }}</th>
+      <td><a href="{% url 'add' item.name category item.small %}">${{ item.small }}</a></td>
+      <td><a href="{% url 'add' item.name category item.large %}">${{ item.large }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if category == "Pasta" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Small</th>
+      <th scope="col">Large</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.name }}</th>
+      <td><a href="{% url 'add' item.name category item.small %}">${{ item.small }}</a></td>
+      <td><a href="{% url 'add' item.name category item.large %}">${{ item.large }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if category == "Toppings" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row"><a href="{% url 'add' item.name category 0 %}">{{ item.name }}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if category == "Salads" %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Small</th>
+      <th scope="col">Large</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.name }}</th>
+      <td><a href="{% url 'add' item.name category item.small %}">${{ item.small }}</a></td>
+      <td><a href="{% url 'add' item.name category item.large %}">${{ item.large }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}
